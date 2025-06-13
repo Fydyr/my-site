@@ -1,9 +1,10 @@
-<script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
-
 <template>
   <main>
-    <TheWelcome />
+    <HeaderMenuComponent/>
+    <p>hello world</p>
   </main>
 </template>
+
+<script setup lang="ts">
+import HeaderMenuComponent from '../components/HeaderMenu.component.vue';
+</script>

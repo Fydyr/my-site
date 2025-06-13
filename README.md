@@ -40,9 +40,3 @@ But it's still recommended to test the production build with `test:e2e` before d
 ```sh
 npm run build
 ```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
