@@ -9,21 +9,11 @@
       </div>
 
       <!-- Navigation Menu Desktop -->
-      <n-menu
-        :options="menuOptions"
-        :value="selectedKey"
-        mode="horizontal"
-        :root-indent="36"
-        class="nav-menu-centered desktop-only"
-      />
+      <n-menu :options="menuOptions" :value="selectedKey" mode="horizontal" :root-indent="36"
+        class="nav-menu-centered desktop-only" />
 
       <!-- Menu Burger Mobile -->
-      <n-button
-        quaternary
-        circle
-        class="mobile-menu-button mobile-only"
-        @click="showMobileMenu = true"
-      >
+      <n-button quaternary circle class="mobile-menu-button mobile-only" @click="showMobileMenu = true">
         <template #icon>
           <span class="burger-icon">☰</span>
         </template>
@@ -31,23 +21,9 @@
     </div>
 
     <!-- Drawer pour le menu mobile -->
-    <n-drawer
-      v-model:show="showMobileMenu"
-      :width="280"
-      placement="right"
-      class="mobile-drawer"
-    >
-      <n-drawer-content
-        title="Navigation"
-        closable
-        class="mobile-drawer-content"
-      >
-        <n-menu
-          :options="menuOptions"
-          :value="selectedKey"
-          mode="vertical"
-          class="mobile-nav-menu"
-        />
+    <n-drawer v-model:show="showMobileMenu" :width="280" placement="right" class="mobile-drawer">
+      <n-drawer-content title="Navigation" closable class="mobile-drawer-content">
+        <n-menu :options="menuOptions" :value="selectedKey" mode="vertical" class="mobile-nav-menu" />
       </n-drawer-content>
     </n-drawer>
   </n-layout-header>
@@ -139,8 +115,13 @@ const selectedKey = computed(() => route.path);
 }
 
 @keyframes scan {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
 }
 
 .header-content {
@@ -171,8 +152,13 @@ const selectedKey = computed(() => route.path);
 }
 
 @keyframes glow {
-  from { text-shadow: 0 0 15px rgba(0, 255, 255, 0.8); }
-  to { text-shadow: 0 0 25px rgba(0, 255, 255, 1), 0 0 35px rgba(0, 255, 255, 0.5); }
+  from {
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+  }
+
+  to {
+    text-shadow: 0 0 25px rgba(0, 255, 255, 1), 0 0 35px rgba(0, 255, 255, 0.5);
+  }
 }
 
 .nav-menu-centered {
@@ -183,7 +169,6 @@ const selectedKey = computed(() => route.path);
   position: relative;
 }
 
-/* Styles futuristes */
 .nav-menu-centered :deep(.n-menu-item-content) {
   color: white !important;
   font-family: 'Courier New', monospace;
@@ -199,10 +184,35 @@ const selectedKey = computed(() => route.path);
   text-shadow: none;
   margin: 0 12px;
   padding: 12px 20px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center;
+}
+
+/* Centrage des icônes et du texte */
+.nav-menu-centered :deep(.n-menu-item-content .n-menu-item-content__icon) {
+  color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+.nav-menu-centered :deep(.n-menu-item-content .n-menu-item-content-header) {
+  color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
 }
 
 .nav-menu-centered :deep(.n-menu-item) {
   margin: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-menu-centered :deep(.n-menu-item:first-child) {
@@ -211,11 +221,6 @@ const selectedKey = computed(() => route.path);
 
 .nav-menu-centered :deep(.n-menu-item:last-child) {
   margin-right: 0;
-}
-
-.nav-menu-centered :deep(.n-menu-item-content .n-menu-item-content__icon),
-.nav-menu-centered :deep(.n-menu-item-content .n-menu-item-content-header) {
-  color: white !important;
 }
 
 .nav-menu-centered :deep(.n-menu-item:not(.n-menu-item--selected)) .n-menu-item-content {
@@ -284,8 +289,13 @@ const selectedKey = computed(() => route.path);
 }
 
 @keyframes pulse-icon {
-  from { filter: drop-shadow(0 0 20px rgba(0, 255, 255, 1)); }
-  to { filter: drop-shadow(0 0 30px rgba(0, 255, 255, 1)) drop-shadow(0 0 40px rgba(255, 0, 150, 0.5)); }
+  from {
+    filter: drop-shadow(0 0 20px rgba(0, 255, 255, 1));
+  }
+
+  to {
+    filter: drop-shadow(0 0 30px rgba(0, 255, 255, 1)) drop-shadow(0 0 40px rgba(255, 0, 150, 0.5));
+  }
 }
 
 /* Menu burger mobile */
@@ -332,7 +342,7 @@ const selectedKey = computed(() => route.path);
   text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
 }
 
-/* Menu mobile vertical */
+/* Menu mobile vertical avec centrage */
 .mobile-nav-menu :deep(.n-menu-item-content) {
   color: white !important;
   font-family: 'Courier New', monospace;
@@ -345,11 +355,32 @@ const selectedKey = computed(() => route.path);
   background: rgba(255, 255, 255, 0.08);
   transition: all 0.3s ease;
   text-shadow: none;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: left;
+  padding: 16px 20px;
 }
 
-.mobile-nav-menu :deep(.n-menu-item-content .n-menu-item-content__icon),
+.mobile-nav-menu :deep(.n-menu-item-content .n-menu-item-content__icon) {
+  color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
 .mobile-nav-menu :deep(.n-menu-item-content .n-menu-item-content-header) {
   color: white !important;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.mobile-nav-menu :deep(.n-menu-item) {
+  display: flex;
+  align-items: center;
 }
 
 .mobile-nav-menu :deep(.n-menu-item) .n-menu-item-content {
@@ -360,7 +391,7 @@ const selectedKey = computed(() => route.path);
   color: white !important;
 }
 
-.mobile-nav-menu :deep(.n-menu-item:not(.n-menu-item--selected)) .n-menu-item-content *{
+.mobile-nav-menu :deep(.n-menu-item:not(.n-menu-item--selected)) .n-menu-item-content * {
   color: white !important;
 }
 
