@@ -1,6 +1,4 @@
-# Créez le fichier test
-cat > .github/workflows/test.yml << 'EOF'
-name: Test Workflow
+name: Test Robust Workflow
 
 on:
   push:
@@ -10,10 +8,24 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Simple echo
+        run: |
+          echo "=== Test GitHub Actions ==="
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "=== Fin du test ==="
       
-      - name: Echo test
-        run: echo "Hello World - GitHub Actions fonctionne !"
-EOF
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: List files
+        run: |
+          echo "=== Contenu du repository ==="
+          ls -la
+          echo "=== Test réussi ==="
