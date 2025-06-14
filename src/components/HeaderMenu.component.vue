@@ -4,7 +4,7 @@
       <!-- Logo/Brand -->
       <div class="brand">
         <n-text strong style="font-size: 20px; color: var(--primary-color)">
-          MonApp
+          Enzo <br>Fournier
         </n-text>
       </div>
 
@@ -92,6 +92,18 @@ const menuOptions = computed(() => [
     key: '/presentation',
     icon: renderIcon('👨'),
     onClick: () => navigateAndClose('/presentation')
+  },
+  {
+    label: 'Projets',
+    key: '/projets',
+    icon: renderIcon('📂'),
+    onClick: () => navigateAndClose('/projets')
+  },
+  {
+    label: 'Contact',
+    key: '/contact',
+    icon: renderIcon('✉️'),
+    onClick: () => navigateAndClose('/contact')
   },
 ]);
 
