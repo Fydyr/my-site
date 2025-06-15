@@ -27,4 +27,9 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 
-app.mount('#app')
+const appElement = document.getElementById('app')
+if (appElement) {
+  app.mount(appElement)
+} else {
+  console.error('Could not find #app element')
+}
