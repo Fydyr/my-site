@@ -1,9 +1,9 @@
 <template>
-  <n-layout-header bordered class="header">
-    <div class="header-content">
+  <n-layout-header bordered class="header overlay">
+    <div class="header-content container">
       <!-- Logo/Brand -->
       <div class="brand">
-        <n-text strong style="font-size: 20px; color: var(--primary-color)">
+        <n-text strong class="text-primary text-glow brand-text">
           Enzo <br>Fournier
         </n-text>
       </div>
@@ -13,7 +13,7 @@
         class="nav-menu-centered desktop-only" />
 
       <!-- Menu Burger Mobile -->
-      <n-button quaternary circle class="mobile-menu-button mobile-only" @click="showMobileMenu = true">
+      <n-button quaternary circle class="btn mobile-menu-button mobile-only" @click="showMobileMenu = true">
         <template #icon>
           <span class="burger-icon">☰</span>
         </template>
@@ -88,49 +88,24 @@ const selectedKey = computed(() => route.path);
 </script>
 
 <style scoped>
+/* ========================================
+   HEADER SPÉCIFIQUE
+   ======================================== */
 .header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+  background: var(--bg-primary);
   backdrop-filter: blur(20px);
   border-bottom: 2px solid;
-  border-image: linear-gradient(90deg, #00d4ff, #7b2cbf, #ff006e) 1;
-  box-shadow:
-    0 4px 30px rgba(0, 212, 255, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.15), transparent);
-  animation: scan 3s linear infinite;
-}
-
-@keyframes scan {
-  0% {
-    left: -100%;
-  }
-
-  100% {
-    left: 100%;
-  }
+  border-image: var(--border-gradient);
+  box-shadow: var(--shadow-primary), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .header-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
   height: 64px;
   position: relative;
 }
@@ -143,24 +118,14 @@ const selectedKey = computed(() => route.path);
   z-index: 2;
 }
 
-.brand .n-text {
-  color: #00ffff !important;
-  text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
-  font-family: 'Courier New', monospace;
-  letter-spacing: 2px;
-  animation: glow 2s ease-in-out infinite alternate;
+.brand-text {
+  font-size: 20px;
+  letter-spacing: var(--letter-spacing-wide);
 }
 
-@keyframes glow {
-  from {
-    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
-  }
-
-  to {
-    text-shadow: 0 0 25px rgba(0, 255, 255, 1), 0 0 35px rgba(0, 255, 255, 0.5);
-  }
-}
-
+/* ========================================
+   NAVIGATION DESKTOP
+   ======================================== */
 .nav-menu-centered {
   display: flex;
   justify-content: center;
@@ -170,18 +135,16 @@ const selectedKey = computed(() => route.path);
 }
 
 .nav-menu-centered :deep(.n-menu-item-content) {
-  color: white !important;
-  font-family: 'Courier New', monospace;
-  font-weight: 600;
-  letter-spacing: 1px;
+  color: var(--text-primary) !important;
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing);
   text-transform: uppercase;
   position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: none;
-  text-shadow: none;
+  transition: var(--transition-smooth);
+  border: var(--border-primary);
+  border-radius: var(--border-radius);
+  background: var(--bg-card);
   margin: 0 12px;
   padding: 12px 20px;
   display: flex !important;
@@ -190,9 +153,8 @@ const selectedKey = computed(() => route.path);
   text-align: center;
 }
 
-/* Centrage des icônes et du texte */
 .nav-menu-centered :deep(.n-menu-item-content .n-menu-item-content__icon) {
-  color: white !important;
+  color: var(--text-primary) !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -200,7 +162,7 @@ const selectedKey = computed(() => route.path);
 }
 
 .nav-menu-centered :deep(.n-menu-item-content .n-menu-item-content-header) {
-  color: white !important;
+  color: var(--text-primary) !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -224,11 +186,11 @@ const selectedKey = computed(() => route.path);
 }
 
 .nav-menu-centered :deep(.n-menu-item:not(.n-menu-item--selected)) .n-menu-item-content {
-  color: white !important;
+  color: var(--text-primary) !important;
 }
 
 .nav-menu-centered :deep(.n-menu-item:not(.n-menu-item--selected)) .n-menu-item-content * {
-  color: white !important;
+  color: var(--text-primary) !important;
 }
 
 .nav-menu-centered :deep(.n-menu-item-content::before) {
@@ -241,18 +203,16 @@ const selectedKey = computed(() => route.path);
   background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.2), transparent);
   opacity: 0;
   transition: opacity 0.3s ease;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
 }
 
 .nav-menu-centered :deep(.n-menu-item-content:hover) {
-  background: rgba(0, 255, 255, 0.15) !important;
-  color: #00ffff !important;
-  border-color: rgba(0, 255, 255, 0.6);
-  box-shadow:
-    0 0 20px rgba(0, 255, 255, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: var(--bg-hover) !important;
+  color: var(--primary-color) !important;
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-glow), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
-  text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+  text-shadow: var(--text-glow);
 }
 
 .nav-menu-centered :deep(.n-menu-item-content:hover::before) {
@@ -260,21 +220,18 @@ const selectedKey = computed(() => route.path);
 }
 
 .nav-menu-centered :deep(.n-menu-item-content--selected) {
-  background: linear-gradient(135deg, rgba(0, 255, 255, 0.25), rgba(255, 0, 150, 0.15)) !important;
-  color: #00ffff !important;
-  border-color: #00ffff;
-  box-shadow:
-    0 0 25px rgba(0, 255, 255, 0.7),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    0 4px 15px rgba(0, 255, 255, 0.3);
-  text-shadow: 0 0 20px rgba(0, 255, 255, 1);
+  background: var(--bg-selected) !important;
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-intense), inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 15px rgba(0, 255, 255, 0.3);
+  text-shadow: var(--text-glow-intense);
   transform: scale(1.05);
 }
 
 /* Animation des icônes emoji */
 .nav-menu-centered :deep(.n-menu-item-content) span {
   filter: none;
-  transition: all 0.3s ease;
+  transition: var(--transition-fast);
 }
 
 .nav-menu-centered :deep(.n-menu-item-content:hover) span {
@@ -288,73 +245,72 @@ const selectedKey = computed(() => route.path);
   animation: pulse-icon 2s ease-in-out infinite alternate;
 }
 
-@keyframes pulse-icon {
-  from {
-    filter: drop-shadow(0 0 20px rgba(0, 255, 255, 1));
-  }
-
-  to {
-    filter: drop-shadow(0 0 30px rgba(0, 255, 255, 1)) drop-shadow(0 0 40px rgba(255, 0, 150, 0.5));
-  }
-}
-
-/* Menu burger mobile */
+/* ========================================
+   MENU BURGER MOBILE
+   ======================================== */
 .mobile-menu-button {
-  border: 2px solid rgba(0, 255, 255, 0.6) !important;
+  border: 2px solid var(--border-glow) !important;
   background: rgba(0, 255, 255, 0.1) !important;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-  transition: all 0.3s ease;
+  box-shadow: var(--shadow-glow);
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  max-width: 44px;
+  flex-shrink: 0;
 }
 
 .mobile-menu-button:hover {
-  background: rgba(0, 255, 255, 0.2) !important;
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+  background: var(--bg-hover) !important;
+  box-shadow: var(--shadow-intense);
   transform: scale(1.1);
 }
 
 .burger-icon {
-  color: #00ffff;
+  color: var(--primary-color);
   font-size: 20px;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  text-shadow: var(--text-glow);
 }
 
-/* Styles pour le drawer mobile */
+/* ========================================
+   DRAWER MOBILE
+   ======================================== */
 .mobile-drawer :deep(.n-drawer) {
-  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+  background: var(--bg-primary);
 }
 
 .mobile-drawer-content {
-  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%) !important;
+  background: var(--bg-primary) !important;
   border-left: 2px solid;
-  border-image: linear-gradient(90deg, #00d4ff, #7b2cbf, #ff006e) 1;
+  border-image: var(--border-gradient);
 }
 
 .mobile-drawer-content :deep(.n-drawer-header) {
   border-bottom: 1px solid rgba(0, 255, 255, 0.3);
-  color: #00ffff !important;
-  font-family: 'Courier New', monospace;
+  color: var(--primary-color) !important;
+  font-family: var(--font-primary);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: var(--letter-spacing-wide);
 }
 
 .mobile-drawer-content :deep(.n-drawer-header__main) {
-  color: #00ffff !important;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  color: var(--primary-color) !important;
+  text-shadow: var(--text-glow);
 }
 
-/* Menu mobile vertical avec centrage */
+/* ========================================
+   MENU MOBILE VERTICAL
+   ======================================== */
 .mobile-nav-menu :deep(.n-menu-item-content) {
-  color: white !important;
-  font-family: 'Courier New', monospace;
-  font-weight: 600;
-  letter-spacing: 1px;
+  color: var(--text-primary) !important;
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing);
   text-transform: uppercase;
   margin: 8px 0;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  transition: all 0.3s ease;
-  text-shadow: none;
+  border: var(--border-primary);
+  border-radius: var(--border-radius);
+  background: var(--bg-card);
+  transition: var(--transition-fast);
   display: flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
@@ -363,7 +319,7 @@ const selectedKey = computed(() => route.path);
 }
 
 .mobile-nav-menu :deep(.n-menu-item-content .n-menu-item-content__icon) {
-  color: white !important;
+  color: var(--text-primary) !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -372,7 +328,7 @@ const selectedKey = computed(() => route.path);
 }
 
 .mobile-nav-menu :deep(.n-menu-item-content .n-menu-item-content-header) {
-  color: white !important;
+  color: var(--text-primary) !important;
   display: flex;
   align-items: center;
   flex: 1;
@@ -383,35 +339,33 @@ const selectedKey = computed(() => route.path);
   align-items: center;
 }
 
-.mobile-nav-menu :deep(.n-menu-item) .n-menu-item-content {
-  color: white !important;
-}
-
 .mobile-nav-menu :deep(.n-menu-item:not(.n-menu-item--selected)) .n-menu-item-content {
-  color: white !important;
+  color: var(--text-primary) !important;
 }
 
 .mobile-nav-menu :deep(.n-menu-item:not(.n-menu-item--selected)) .n-menu-item-content * {
-  color: white !important;
+  color: var(--text-primary) !important;
 }
 
 .mobile-nav-menu :deep(.n-menu-item-content:hover) {
-  background: rgba(0, 255, 255, 0.15) !important;
-  color: #00ffff !important;
-  border-color: rgba(0, 255, 255, 0.6);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-  text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+  background: var(--bg-hover) !important;
+  color: var(--primary-color) !important;
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-glow);
+  text-shadow: var(--text-glow);
 }
 
 .mobile-nav-menu :deep(.n-menu-item-content--selected) {
-  background: linear-gradient(135deg, rgba(0, 255, 255, 0.25), rgba(255, 0, 150, 0.15)) !important;
-  color: #00ffff !important;
-  border-color: #00ffff;
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
-  text-shadow: 0 0 20px rgba(0, 255, 255, 1);
+  background: var(--bg-selected) !important;
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-intense);
+  text-shadow: var(--text-glow-intense);
 }
 
-/* Responsive classes */
+/* ========================================
+   CLASSES RESPONSIVE
+   ======================================== */
 .desktop-only {
   display: flex;
 }
@@ -420,14 +374,19 @@ const selectedKey = computed(() => route.path);
   display: none;
 }
 
-/* Responsive */
+/* ========================================
+   RESPONSIVE
+   ======================================== */
 @media (max-width: 768px) {
   .header-content {
     padding: 0 16px;
+    justify-content: space-between;
   }
 
   .brand {
-    left: 16px;
+    position: relative;
+    left: auto;
+    flex-shrink: 0;
   }
 
   .desktop-only {
@@ -436,24 +395,41 @@ const selectedKey = computed(() => route.path);
 
   .mobile-only {
     display: flex;
+    flex-shrink: 0;
   }
 }
 
-@media (max-width: 640px) {
-  .brand {
-    position: static;
-    margin-bottom: 8px;
-  }
-
+@media (max-width: 480px) {
   .header-content {
-    flex-direction: row;
-    justify-content: space-between;
-    height: 64px;
     padding: 12px 16px;
+    justify-content: space-between;
   }
 
-  .header::before {
-    animation-duration: 2s;
+  .brand {
+    position: relative;
+    left: auto;
+    flex-shrink: 0;
+  }
+
+  .brand-text {
+    font-size: 16px;
+  }
+
+  .mobile-menu-button {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+}
+
+@media (max-width: 320px) {
+  .header-content {
+    padding: 8px 12px;
+  }
+
+  .brand-text {
+    font-size: 14px;
   }
 }
 </style>

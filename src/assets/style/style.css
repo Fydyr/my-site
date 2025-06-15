@@ -1,0 +1,747 @@
+/* ========================================
+   VARIABLES CSS GLOBALES - THÈME MODERNE
+   ======================================== */
+:root {
+  /* Couleurs principales */
+  --primary-color: #00ffff;
+  --secondary-color: #ff006e;
+  --accent-color: #7b2cbf;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+
+  /* Backgrounds */
+  --bg-primary: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+  --bg-card: rgba(255, 255, 255, 0.08);
+  --bg-hover: rgba(0, 255, 255, 0.15);
+  --bg-selected: linear-gradient(135deg, rgba(0, 255, 255, 0.25), rgba(255, 0, 150, 0.15));
+
+  /* Bordures */
+  --border-primary: 1px solid rgba(255, 255, 255, 0.3);
+  --border-gradient: linear-gradient(90deg, #00d4ff, #7b2cbf, #ff006e) 1;
+  --border-glow: rgba(0, 255, 255, 0.6);
+
+  /* Ombres */
+  --shadow-primary: 0 4px 30px rgba(0, 212, 255, 0.3);
+  --shadow-glow: 0 0 20px rgba(0, 255, 255, 0.5);
+  --shadow-intense: 0 0 25px rgba(0, 255, 255, 0.7);
+
+  /* Text shadows */
+  --text-glow: 0 0 15px rgba(0, 255, 255, 0.8);
+  --text-glow-intense: 0 0 25px rgba(0, 255, 255, 1), 0 0 35px rgba(0, 255, 255, 0.5);
+
+  /* Typographie */
+  --font-primary: 'Courier New', monospace;
+  --font-weight-bold: 600;
+  --letter-spacing: 1px;
+  --letter-spacing-wide: 2px;
+
+  /* Transitions */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.3s ease;
+
+  /* Rayons */
+  --border-radius: 8px;
+  --border-radius-large: 12px;
+}
+
+/* ========================================
+   RESET ET BASE
+   ======================================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   ANIMATIONS GLOBALES
+   ======================================== */
+@keyframes glow {
+  from {
+    text-shadow: var(--text-glow);
+  }
+
+  to {
+    text-shadow: var(--text-glow-intense);
+  }
+}
+
+@keyframes scan {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes pulse-glow {
+  from {
+    box-shadow: var(--shadow-glow);
+  }
+
+  to {
+    box-shadow: var(--shadow-intense), 0 0 40px rgba(255, 0, 150, 0.5);
+  }
+}
+
+@keyframes pulse-icon {
+  from {
+    filter: drop-shadow(0 0 20px rgba(0, 255, 255, 1));
+  }
+
+  to {
+    filter: drop-shadow(0 0 30px rgba(0, 255, 255, 1)) drop-shadow(0 0 40px rgba(255, 0, 150, 0.5));
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ========================================
+   CLASSES UTILITAIRES
+   ======================================== */
+
+/* Textes */
+.text-primary {
+  color: var(--primary-color);
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  text-shadow: var(--text-glow);
+}
+
+.text-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.title-hero {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  margin: 2rem 0;
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+/* Cartes et conteneurs */
+.card {
+  background: var(--bg-card);
+  border: var(--border-primary);
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(20px);
+  padding: 2rem;
+  margin: 1rem 0;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+  transition: var(--transition-fast);
+}
+
+.card:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-5px);
+}
+
+.card:hover::before {
+  left: 100%;
+  transition: left 0.6s ease;
+}
+
+.card-glow {
+  border: 2px solid var(--primary-color);
+  box-shadow: var(--shadow-intense);
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+/* Boutons */
+.btn {
+  background: var(--bg-card);
+  border: var(--border-primary);
+  border-radius: var(--border-radius);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing);
+  text-transform: uppercase;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn:hover {
+  background: var(--bg-hover);
+  color: var(--primary-color);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+  text-shadow: var(--text-glow);
+}
+
+.btn:hover::before {
+  opacity: 1;
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: var(--bg-selected);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  box-shadow: var(--shadow-intense);
+  text-shadow: var(--text-glow);
+}
+
+/* Inputs */
+.input {
+  background: var(--bg-card);
+  border: var(--border-primary);
+  border-radius: var(--border-radius);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  padding: 12px 16px;
+  transition: var(--transition-fast);
+  outline: none;
+  width: 100%;
+}
+
+.input:focus {
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-glow);
+  background: var(--bg-hover);
+}
+
+.input::placeholder {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Sections */
+.section {
+  padding: 4rem 2rem;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--border-gradient);
+  background-size: 200% 100%;
+  animation: scan 3s linear infinite;
+}
+
+/* Container principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+}
+
+/* Overlay avec effet de scan */
+.overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.15), transparent);
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+}
+
+/* Bordures avec gradient */
+.border-gradient {
+  border: 2px solid;
+  border-image: var(--border-gradient);
+  position: relative;
+}
+
+.border-animated {
+  border: 2px solid var(--primary-color);
+  position: relative;
+  background: linear-gradient(var(--primary-color), var(--primary-color)) padding-box,
+    var(--border-gradient) border-box;
+  border: 2px solid transparent;
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+/* Effets de particules */
+.particles {
+  position: relative;
+  overflow: hidden;
+}
+
+.particles::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 0, 150, 0.1) 0%, transparent 50%);
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Navigation (pour réutiliser dans d'autres composants) */
+.nav-item {
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing);
+  text-transform: uppercase;
+  position: relative;
+  transition: var(--transition-smooth);
+  border: var(--border-primary);
+  border-radius: var(--border-radius);
+  background: var(--bg-card);
+  backdrop-filter: none;
+  text-shadow: none;
+  margin: 0 8px;
+  padding: 12px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: var(--border-radius);
+}
+
+.nav-item:hover {
+  background: var(--bg-hover);
+  color: var(--primary-color);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+  text-shadow: var(--text-glow);
+}
+
+.nav-item:hover::before {
+  opacity: 1;
+}
+
+.nav-item.active {
+  background: var(--bg-selected);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-intense);
+  text-shadow: var(--text-glow-intense);
+  transform: scale(1.05);
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE FIRST
+   ======================================== */
+
+/* Tablettes et écrans moyens */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .title-hero {
+    font-size: clamp(1.2rem, 3.5vw, 2.5rem);
+  }
+
+  .card {
+    padding: 1.8rem;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Smartphones en mode paysage et petites tablettes */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .section {
+    padding: 2rem 1rem;
+    margin: 1rem 0;
+  }
+
+  .card {
+    padding: 1.5rem;
+    margin: 0.5rem 0;
+    border-radius: 6px;
+  }
+
+  .nav-item {
+    margin: 4px 0;
+    padding: 16px 20px;
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    padding: 12px 18px;
+    font-size: 0.85rem;
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .input {
+    padding: 14px 16px;
+    font-size: 1rem;
+    border-radius: 6px;
+  }
+
+  .title-hero {
+    font-size: clamp(1rem, 3vw, 2rem);
+    margin: 1.5rem 0;
+  }
+
+  .text-primary {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+}
+
+/* Smartphones en mode portrait */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .section {
+    padding: 1.5rem 0.75rem;
+    margin: 0.5rem 0;
+  }
+
+  .card {
+    padding: 1rem;
+    margin: 0.3rem 0;
+    border-radius: 4px;
+  }
+
+  .btn {
+    padding: 14px 16px;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+
+  .input {
+    padding: 16px 14px;
+    font-size: 1rem;
+  }
+
+  .title-hero {
+    font-size: clamp(0.9rem, 2.5vw, 1.5rem);
+    margin: 1rem 0;
+  }
+
+  .text-primary {
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* Réduction des effets pour améliorer les performances sur mobile */
+  .card::before,
+  .overlay::before,
+  .section::before {
+    animation-duration: 4s;
+  }
+
+  .text-glow {
+    animation-duration: 3s;
+  }
+
+  /* Espacement réduit pour mobile */
+  .mt-1 {
+    margin-top: 0.25rem;
+  }
+
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+
+  .mt-3 {
+    margin-top: 0.75rem;
+  }
+
+  .mt-4 {
+    margin-top: 1rem;
+  }
+
+  .mb-1 {
+    margin-bottom: 0.25rem;
+  }
+
+  .mb-2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .mb-3 {
+    margin-bottom: 0.75rem;
+  }
+
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+
+  .p-1 {
+    padding: 0.25rem;
+  }
+
+  .p-2 {
+    padding: 0.5rem;
+  }
+
+  .p-3 {
+    padding: 0.75rem;
+  }
+
+  .p-4 {
+    padding: 1rem;
+  }
+}
+
+/* Très petits écrans */
+@media (max-width: 320px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  .section {
+    padding: 1rem 0.5rem;
+  }
+
+  .card {
+    padding: 0.75rem;
+  }
+
+  .btn {
+    padding: 12px 14px;
+    font-size: 0.75rem;
+  }
+
+  .input {
+    padding: 14px 12px;
+  }
+
+  .title-hero {
+    font-size: 1.2rem;
+  }
+}
+
+/* Classes utilitaires pour le responsive */
+@media (max-width: 768px) {
+  .mobile-full-width {
+    width: 100%;
+  }
+
+  .mobile-text-center {
+    text-align: center;
+  }
+
+  .mobile-hidden {
+    display: none;
+  }
+
+  .mobile-stack {
+    flex-direction: column;
+  }
+
+  .mobile-no-margin {
+    margin: 0;
+  }
+}
+
+/* Améliorations tactiles pour mobile */
+@media (hover: none) and (pointer: coarse) {
+
+  .btn:hover,
+  .nav-item:hover,
+  .card:hover {
+    transform: none;
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  .nav-item:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Mode paysage mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .section {
+    padding: 1rem;
+  }
+
+  .title-hero {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+  }
+}
+
+/* ========================================
+   UTILITAIRES D'ESPACEMENT
+   ======================================== */
+.mt-1 {
+  margin-top: 0.5rem;
+}
+
+.mt-2 {
+  margin-top: 1rem;
+}
+
+.mt-3 {
+  margin-top: 1.5rem;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 1rem;
+}
+
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+.p-1 {
+  padding: 0.5rem;
+}
+
+.p-2 {
+  padding: 1rem;
+}
+
+.p-3 {
+  padding: 1.5rem;
+}
+
+.p-4 {
+  padding: 2rem;
+}
+
+/* ========================================
+   CLASSES D'ÉTAT
+   ======================================== */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), transparent);
+  animation: scan 1.5s linear infinite;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+.success {
+  border-color: #00ff00;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+.error {
+  border-color: #ff0000;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
