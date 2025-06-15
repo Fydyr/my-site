@@ -2,6 +2,7 @@
 import {NConfigProvider} from 'naive-ui';
 import { RouterView } from 'vue-router'
 import HeaderMenu from './components/HeaderMenu.component.vue'
+import FooterMenu from './components/FooterMenu.component.vue'
 
 </script>
 
@@ -18,6 +19,9 @@ import HeaderMenu from './components/HeaderMenu.component.vue'
           </n-message-provider>
         </n-space>
       </n-layout-content>
+      <n-layout-footer>
+        <FooterMenu/>
+      </n-layout-footer>
     </n-layout>
   </n-config-provider>
 </template>
