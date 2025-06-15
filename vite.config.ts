@@ -56,4 +56,17 @@ export default defineConfig({
   createHtmlPlugin({}),
   ],
   base: '/my-site/',
+build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
+  },
+  // Configuration pour gérer le routing côté client
+  server: {
+    fs: {
+      strict: false
+    }
+  }
 })
