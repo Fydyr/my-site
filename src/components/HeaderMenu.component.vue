@@ -64,12 +64,6 @@ const menuOptions = computed(() => [
     onClick: () => navigateAndClose('/')
   },
   {
-    label: 'Présentation',
-    key: '/presentation',
-    icon: renderIcon('👨'),
-    onClick: () => navigateAndClose('/presentation')
-  },
-  {
     label: 'Projets',
     key: '/projets',
     icon: renderIcon('📂'),
