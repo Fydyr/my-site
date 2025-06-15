@@ -7,7 +7,7 @@
       q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
     });
     if (q.p !== undefined) {
-      window.history.replaceState(null, null,
+      window.history.replaceState(null, '',
         l.pathname.slice(0, -1) + (q.p || '') +
         (q.q ? ('?' + q.q) : '') +
         l.hash
