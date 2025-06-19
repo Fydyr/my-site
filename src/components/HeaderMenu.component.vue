@@ -59,21 +59,21 @@ const renderIcon = (iconContent: string) => () => h('span', { style: 'font-size:
 const menuOptions = computed(() => [
   {
     label: 'Accueil',
-    key: '/',
+    key: '/my-site',
     icon: renderIcon('🏠'),
-    onClick: () => navigateAndClose('/')
+    onClick: () => navigateAndClose('/my-site')
   },
   {
     label: 'Projets',
-    key: '/projets',
+    key: '/my-site/projets',
     icon: renderIcon('📂'),
-    onClick: () => navigateAndClose('/projets')
+    onClick: () => navigateAndClose('/my-site/projets')
   },
   {
     label: 'Contact',
-    key: '/contact',
+    key: '/my-site/contact',
     icon: renderIcon('✉️'),
-    onClick: () => navigateAndClose('/contact')
+    onClick: () => navigateAndClose('/my-site/contact')
   },
 ]);
 

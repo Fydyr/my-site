@@ -49,7 +49,7 @@
         <div class="footer-contact">
           <h4 class="footer-title">Contact</h4>
           <div class="contact-info">
-            <router-link to="/contact" class="contact-link">
+            <router-link to="/my-site/contact" class="contact-link">
               <span class="contact-icon">✉️</span>
               Me contacter
             </router-link>
@@ -69,7 +69,7 @@
             © {{ currentYear }} Enzo Fournier. Tous droits réservés.
           </p>
           <div class="footer-legal">
-            <router-link to="/mentions-legales" class="legal-link">
+            <router-link to="/my-site/mentions-legales" class="legal-link">
               Mentions légales
             </router-link>
           </div>
@@ -87,9 +87,9 @@ const currentYear = computed(() => new Date().getFullYear());
 
 // Liens de navigation
 const navLinks = [
-  { label: 'Accueil', path: '/' },
-  { label: 'Projets', path: '/projets' },
-  { label: 'Contact', path: '/contact' }
+  { label: 'Accueil', path: '/my-site/' },
+  { label: 'Projets', path: '/my-site/projets' },
+  { label: 'Contact', path: '/my-site/contact' }
 ];
 
 // Projets récents
