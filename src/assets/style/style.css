@@ -4,9 +4,9 @@
 :root {
   /* Couleurs principales */
   --primary-color: #00ffff;
-  --secondary-color: #ff006e;
+  --secondary-color: #533999;
   --accent-color: #7b2cbf;
-  --text-primary: #ffffff;
+  --text-primary: hsl(0, 0%, 100%);
   --text-secondary: rgba(255, 255, 255, 0.8);
 
   /* Backgrounds */
@@ -51,6 +51,11 @@
   box-sizing: border-box;
 }
 
+html {
+  background: var(--bg-primary);
+  min-height: 100vh;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -59,6 +64,72 @@ body {
   font-family: var(--font-primary);
   min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Fond futuriste avec grille et particules */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    /* Grille futuriste */
+    linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+    /* Points lumineux */
+    radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(255, 0, 150, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 40% 90%, rgba(123, 44, 191, 0.06) 0%, transparent 25%),
+    /* Fond de base */
+    var(--bg-primary);
+  background-size:
+    50px 50px,
+    50px 50px,
+    800px 800px,
+    600px 600px,
+    400px 400px,
+    100% 100%;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Effet de scan global animé */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(0, 255, 255, 0.02) 45%,
+    rgba(0, 255, 255, 0.05) 50%,
+    rgba(0, 255, 255, 0.02) 55%,
+    transparent 100%
+  );
+  animation: global-scan 8s linear infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes global-scan {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Page wrapper pour s'assurer que le contenu est au-dessus */
+#app {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
 }
 
 /* ========================================
@@ -105,14 +176,30 @@ body {
 }
 
 @keyframes float {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(0px);
   }
 
   50% {
     transform: translateY(-10px);
+  }
+}
+
+/* Animation des particules de fond */
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+
+  33% {
+    transform: translateY(-15px) rotate(120deg);
+    opacity: 0.6;
+  }
+
+  66% {
+    transform: translateY(-5px) rotate(240deg);
+    opacity: 0.4;
   }
 }
 
@@ -328,7 +415,7 @@ body {
   animation: pulse-glow 2s ease-in-out infinite alternate;
 }
 
-/* Effets de particules */
+/* Effets de particules améliorés */
 .particles {
   position: relative;
   overflow: hidden;
@@ -342,9 +429,10 @@ body {
   right: 0;
   bottom: 0;
   background-image:
-    radial-gradient(circle at 25% 25%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(255, 0, 150, 0.1) 0%, transparent 50%);
-  animation: float 6s ease-in-out infinite;
+    radial-gradient(circle at 25% 25%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 0, 150, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 10%, rgba(123, 44, 191, 0.08) 0%, transparent 40%);
+  animation: particle-float 8s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -527,6 +615,17 @@ body {
     animation-duration: 3s;
   }
 
+  /* Réduction de la grille sur mobile */
+  body::before {
+    background-size:
+      30px 30px,
+      30px 30px,
+      600px 600px,
+      400px 400px,
+      300px 300px,
+      100% 100%;
+  }
+
   /* Espacement réduit pour mobile */
   .mt-1 {
     margin-top: 0.25rem;
@@ -594,6 +693,7 @@ body {
   .btn {
     padding: 12px 14px;
     font-size: 0.75rem;
+    color: var(--primary-color);
   }
 
   .input {
@@ -630,7 +730,6 @@ body {
 
 /* Améliorations tactiles pour mobile */
 @media (hover: none) and (pointer: coarse) {
-
   .btn:hover,
   .nav-item:hover,
   .card:hover {

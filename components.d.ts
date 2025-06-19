@@ -10,12 +10,17 @@ declare module 'vue' {
   export interface GlobalComponents {
     'FooterMenu.component': typeof import('./src/components/FooterMenu.component.vue')['default']
     'HeaderMenu.component': typeof import('./src/components/HeaderMenu.component.vue')['default']
+    'Home.component': typeof import('./src/components/Home.component.vue')['default']
+    NButton: typeof import('naive-ui')['NButton']
+    NCard: typeof import('naive-ui')['NCard']
     NLayout: typeof import('naive-ui')['NLayout']
     NLayoutContent: typeof import('naive-ui')['NLayoutContent']
     NLayoutFooter: typeof import('naive-ui')['NLayoutFooter']
     NLayoutHeader: typeof import('naive-ui')['NLayoutHeader']
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
+    NResult: typeof import('naive-ui')['NResult']
     NSpace: typeof import('naive-ui')['NSpace']
+    NTitle: typeof import('naive-ui')['NTitle']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
