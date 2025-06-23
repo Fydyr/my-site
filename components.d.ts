@@ -10,7 +10,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     'FooterMenu.component': typeof import('./src/components/FooterMenu.component.vue')['default']
     'HeaderMenu.component': typeof import('./src/components/HeaderMenu.component.vue')['default']
-    'Home.component': typeof import('./src/components/Home.component.vue')['default']
+    'Home.component': typeof import('./src/components/Home.components/Home.component.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
     NLayout: typeof import('naive-ui')['NLayout']
@@ -23,5 +23,6 @@ declare module 'vue' {
     NTitle: typeof import('naive-ui')['NTitle']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    'Skills.component': typeof import('./src/components/Home.components/Skills.component.vue')['default']
   }
 }
